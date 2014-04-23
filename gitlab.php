@@ -48,13 +48,6 @@ if ($branch === 'refs/heads/master')
 	$fs and fclose($fs);
 	/* then pull master */
 	exec("/home/deploy/master_deploy.sh");
-							/*
-							#!/bin/bash
-							cd /home/web/prod/www/
-							git checkout master
-							git pull origin master >> /home/deploy/deploy.log
-							echo "" >> /home/deploy/deploy.log
-							*/
 	} 
 else 
 	{
@@ -64,12 +57,5 @@ else
 	$fs and fclose($fs);
 	/* pull devel branch */
 	exec("/home/deploy/devel_deploy.sh");
-							/*
-							#!/bin/bash
-							cd /home/web/devel/www/
-							git checkout devel
-							git pull origin devel >> /home/deploy/deploy.log
-							echo "" >> /home/deploy/deploy.log
-							*/
 	}
 ?>
