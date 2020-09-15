@@ -41,31 +41,26 @@ fwrite($fs, '===================================================================
 //fwrite($fs, 'DATA: '.print_r($data, true).PHP_EOL);
 
 /* branch filter */
-if ($branch === 'refs/heads/master')
-	{
+if ($branch === 'refs/heads/master') {
 	/* if master branch*/
 	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
 	fwrite($fs, '======================================================================='.PHP_EOL);
 	$fs and fclose($fs);
 	/* then pull master */
 	exec("/home/deploy/master_deploy.sh");
-	} 
-elseif  ($branch === 'refs/heads/staging')
-	{
+} elseif  ($branch === 'refs/heads/staging') {
 	/* if staging branch */
 	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
 	fwrite($fs, '======================================================================='.PHP_EOL);
 	$fs and fclose($fs);
 	/* pull devel branch */
 	exec("/home/deploy/staging_deploy.sh");
-	}
-else  ($branch === 'refs/heads/developer')
-	{
+} else {
 	/* if developer branch */
 	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
 	fwrite($fs, '======================================================================='.PHP_EOL);
 	$fs and fclose($fs);
 	/* pull devel branch */
 	exec("/home/deploy/developer_deploy.sh");
-	}
+}
 ?>
