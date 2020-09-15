@@ -53,7 +53,7 @@ if ($branch === 'refs/heads/master') {
 	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
 	fwrite($fs, '======================================================================='.PHP_EOL);
 	$fs and fclose($fs);
-	/* pull devel branch */
+	/* pull staging branch */
 	exec("/home/deploy/staging_deploy.sh");
 } else {
 	/* if developer branch */
