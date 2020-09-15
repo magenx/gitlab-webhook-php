@@ -18,7 +18,7 @@ fwrite($fs, 'Request on ['.date("Y-m-d H:i:s").'] from ['.$client_ip.']'.PHP_EOL
 if ($client_token !== $access_token)
 {
     echo "error 403";
-    fwrite($fs, "Invalid token [{$client_token}]".PHP_EOL);
+    fwrite($fs, "Invalid token [{$client_ip}] [{$client_token}]".PHP_EOL);
     exit(0);
 }
 
@@ -50,13 +50,22 @@ if ($branch === 'refs/heads/master')
 	/* then pull master */
 	exec("/home/deploy/master_deploy.sh");
 	} 
-else 
+elseif  ($branch === 'refs/heads/staging')
 	{
-	/* if devel branch */
+	/* if staging branch */
 	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
 	fwrite($fs, '======================================================================='.PHP_EOL);
 	$fs and fclose($fs);
 	/* pull devel branch */
-	exec("/home/deploy/devel_deploy.sh");
+	exec("/home/deploy/staging_deploy.sh");
+	}
+else  ($branch === 'refs/heads/developer')
+	{
+	/* if developer branch */
+	fwrite($fs, 'BRANCH: '.print_r($branch, true).PHP_EOL);
+	fwrite($fs, '======================================================================='.PHP_EOL);
+	$fs and fclose($fs);
+	/* pull devel branch */
+	exec("/home/deploy/developer_deploy.sh");
 	}
 ?>
